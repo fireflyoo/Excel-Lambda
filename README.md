@@ -10,7 +10,9 @@ strRev=LAMBDA(s,LET(n,LEN(s),CONCAT(MID(s,SEQUENCE(n,,n,-1),1))))
 
 ```
 #身份证校验
-#其中MOD(2^SEQUENCE(17,,17,-1),11)),11)这段可以改成数组常量{7;9;10;5;8;4;2;1;6;3;7;9;10;5;8;4;2}
+
 validID=LAMBDA(ID,MID("10X98765432",(MOD(SUM(MID(ID,SEQUENCE(17),1)*MOD(2^SEQUENCE(17,,17,-1),11)),11)+1),1)=RIGHT(ID))
+#其中MOD(2^SEQUENCE(17,,17,-1),11)),11)这段可以改成成数组常量{7;9;10;5;8;4;2;1;6;3;7;9;10;5;8;4;2}
+#可以用ARRAYTOTEXT(数组,1)自动转换成文本格式，不用手动输.
 validID=LAMBDA(ID,MID("10X98765432",(MOD(SUM(MID(ID,SEQUENCE(17),1)*{7;9;10;5;8;4;2;1;6;3;7;9;10;5;8;4;2}),11)+1),1)=RIGHT(ID))
 ```
